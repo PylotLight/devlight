@@ -11,20 +11,10 @@ terraform {
     }
   }
   cloud {
-    organization = "Devlight"
+    organization = "DevLight"
     workspaces {
       tags = ["Pylot"]
     }
   }
 }
 
-# Configure the Microsoft Azure Provider
-provider "azurerm" {
-  features {}
-}
-
-
-# Configure the AWS Provider
-provider "aws" {
-  region = "ap-southeast-2"
-}
