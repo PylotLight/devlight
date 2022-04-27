@@ -1,15 +1,15 @@
 terraform {
+  required_version = ">= 1.1.0"
+  required_providers {
+    random = {
+      source  = "hashicorp/random"
+      version = "3.0.1"
+    }
+  }
   cloud {
     organization = "Devlight"
-
     workspaces {
       tags = ["Pylot"]
     }
   }
 }
-
-resource "null_resource" "example" {
-       triggers = {
-         value = "A example resource that does nothing!"
-       }
-     }
