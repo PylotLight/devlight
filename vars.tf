@@ -1,16 +1,10 @@
-variable "name" {
-  type        = string
-  default     = ""
-  description = "description data"
-}
-
 variable "aws_region" {
-  description = "AWS region"
+  description = "AWS Region"
   default     = "ap-southeast-2"
 }
 
 variable "azure_region" {
-  description = "azure region"
+  description = "Azure Region"
   default     = "aus-south"
 }
 
