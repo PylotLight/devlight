@@ -5,7 +5,7 @@ variable "aws_region" {
 
 variable "azure_region" {
   description = "Azure Region"
-  default     = "aus-south"
+  default     = "australiasoutheast"
 }
 
 variable "ARM_CLIENT_ID" {
