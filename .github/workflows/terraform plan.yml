@@ -47,7 +47,7 @@ name: 'Terraform Plan'
 on:
   pull_request:
     branches:
-    - dev
+    - master
 
 permissions:
   contents: read
