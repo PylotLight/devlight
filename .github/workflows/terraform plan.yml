@@ -85,7 +85,7 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: > 
-      terraform plan -input=false
+      terraform plan -input=false 
       -var 'ARM_CLIENT_ID=${{secrets.TF_CLIENT_ID}}' 
       -var 'ARM_CLIENT_SECRET=${{secrets.TF_CLIENT_SECRET}}' 
       -var 'ARM_SUBSCRIPTION_ID=${{secrets.TF_SUBSCRIPTION_ID}}' 
