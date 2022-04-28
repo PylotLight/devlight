@@ -8,12 +8,12 @@ provider "azurerm" {
   tenant_id       = var.AZURE_TENANT_ID
 }
 
-# data "azurerm_subscription" "current" {}
+data "azurerm_subscription" "current" {}
 
-# resource "azurerm_resource_group" "azure_rg" {
-#   name     = "DevLight-Resource-Group"
-#   location = var.azure_region
-# }
+resource "azurerm_resource_group" "azure_rg" {
+  name     = "DevLight-Resource-Group"
+  location = var.azure_region
+}
 
 # resource "azurerm_monitor_action_group" "azure_mag" {
 #   name                = "Monitor-Action-Group"
