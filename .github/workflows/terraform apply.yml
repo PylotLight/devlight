@@ -57,12 +57,6 @@ jobs:
     name: 'Terraform Apply'
     runs-on: ubuntu-latest
     environment: production
-    
-    env:
-      ARM_CLIENT_ID: ${{secrets.TF_CLIENT_ID}}
-      ARM_CLIENT_SECRET: ${{secrets.TF_CLIENT_SECRET}}
-      ARM_SUBSCRIPTION_ID: ${{secrets.TF_SUBSCRIPTION_ID}}
-      ARM_TENANT_ID: ${{secrets.TF_TENANT_ID}}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -82,13 +76,15 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init
+
+    - name: Export Azure Login Credentials
+      run: |
+        echo "TF_VAR_ARM_CLIENT_ID=${{ secrets.TF_CLIENT_ID }}" >> $GITHUB_ENV
+        echo "TF_VAR_ARM_CLIENT_SECRET=${{ secrets.TF_CLIENT_SECRET }}" >> $GITHUB_ENV
+        echo "TF_VAR_ARM_SUBSCRIPTION_ID=${{ secrets.TF_SUBSCRIPTION_ID }}" >> $GITHUB_ENV
+        echo "TF_VAR_ARM_TENANT_ID=${{ secrets.TF_TENANT_ID }}" >> $GITHUB_ENV
       # On push to master, build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      run: >
-        terraform apply -auto-approve -input=false
-        -var 'ARM_CLIENT_ID=${{secrets.TF_CLIENT_ID}}'
-        -var 'ARM_CLIENT_SECRET=${{secrets.TF_CLIENT_SECRET}}'
-        -var 'ARM_SUBSCRIPTION_ID=${{secrets.TF_SUBSCRIPTION_ID}}'
-        -var 'ARM_TENANT_ID=${{secrets.TF_TENANT_ID}}'
+      run: terraform apply -auto-approve -input=false
