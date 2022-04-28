@@ -83,8 +83,13 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init
-      run: export ARM_ACCESS_KEY="test value"
-      run: export ARM_VAR_ID=${{secrets.TF_TENANT_ID}}
+
+    - name: Export Azure Login Credentials
+      run: |
+        echo "ARM_CLIENT_ID=${{ secrets.TF_CLIENT_ID }}" >> $GITHUB_ENV
+        echo "ARM_CLIENT_SECRET=${{ secrets.TF_CLIENT_SECRET }}" >> $GITHUB_ENV
+        echo "ARM_SUBSCRIPTION_ID=${{ secrets.TF_SUBSCRIPTION_ID }}" >> $GITHUB_ENV
+        echo "ARM_TENANT_ID=${{ secrets.TF_TENANT_ID }}" >> $GITHUB_ENV
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
