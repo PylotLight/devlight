@@ -2,10 +2,10 @@
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
   features {}
-  subscription_id = ${{secrets.TF_SUBSCRIPTION_ID}}
-  client_id       = ${{secrets.TF_CLIENT_ID}}
-  client_secret   = ${{secrets.TF_CLIENT_SECRET}}
-  tenant_id       = ${{secrets.TF_TENANT_ID}}
+  subscription_id = var.AZURE_SUBSCRIPTION_ID
+  client_id       = var.AZURE_CLIENT_ID
+  client_secret   = var.AZURE_CLIENT_SECRET
+  tenant_id       = var.AZURE_TENANT_ID
 }
 
 # data "azurerm_subscription" "current" {}
