@@ -8,24 +8,24 @@ variable "azure_region" {
   default     = "aus-south"
 }
 
-variable "AZURE_CLIENT_ID" {
+variable "ARM_CLIENT_ID" {
   description = "AZURE CLIENT ID"
   type        = string
   sensitive   = true
 }
 
-variable "AZURE_CLIENT_SECRET" {
+variable "ARM_CLIENT_SECRET" {
   description = "AZURE CLIENT SECRET"
   type        = string
   sensitive   = true
 }
 
-variable "AZURE_SUBSCRIPTION_ID" {
+variable "ARM_SUBSCRIPTION_ID" {
   description = "AZURE SUBSCRIPTION ID"
   type        = string
   sensitive   = true
 }
-variable "AZURE_TENANT_ID" {
+variable "ARM_TENANT_ID" {
   description = "AZURE TENANT ID"
   type        = string
   sensitive   = true
