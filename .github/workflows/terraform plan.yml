@@ -78,15 +78,16 @@ jobs:
     - name: Terraform Init
       run: terraform init
 
+    - name: Export Azure Login Credentials
+      run: |
+        echo "TF_VAR_ARM_CLIENT_ID=${{ secrets.TF_CLIENT_ID }}" >> $GITHUB_ENV
+        echo "TF_VAR_ARM_CLIENT_SECRET=${{ secrets.TF_CLIENT_SECRET }}" >> $GITHUB_ENV
+        echo "TF_VAR_ARM_SUBSCRIPTION_ID=${{ secrets.TF_SUBSCRIPTION_ID }}" >> $GITHUB_ENV
+        echo "TF_VAR_ARM_TENANT_ID=${{ secrets.TF_TENANT_ID }}" >> $GITHUB_ENV
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
       run: terraform fmt -check -list=true
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -input=false -var 'ARM_CLIENT_ID=${{secrets.TF_CLIENT_ID}}' -var 'ARM_CLIENT_SECRET=${{secrets.TF_CLIENT_SECRET}}' -var 'ARM_SUBSCRIPTION_ID=${{secrets.TF_SUBSCRIPTION_ID}}' -var 'ARM_TENANT_ID=${{secrets.TF_TENANT_ID}}'
-      env:
-        ARM_CLIENT_ID: ${{secrets.TF_CLIENT_ID}}
-        ARM_CLIENT_SECRET: ${{secrets.TF_CLIENT_SECRET}}
-        ARM_SUBSCRIPTION_ID: ${{secrets.TF_SUBSCRIPTION_ID}}
-        ARM_TENANT_ID: ${{secrets.TF_TENANT_ID}}
+      run: terraform plan -input=false
