@@ -42,7 +42,7 @@
 #       with:
 #         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-name: 'Terraform'
+name: 'Terraform Plan'
 
 on:
   pull_request:
@@ -60,7 +60,7 @@ jobs:
     
     env:
       ARM_CLIENT_ID: ${{secrets.TF_CLIENT_ID}}
-      AZURE_CLIENT_SECRET: ${{secrets.TF_CLIENT_SECRET}}
+      ARM_CLIENT_SECRET: ${{secrets.TF_CLIENT_SECRET}}
       ARM_SUBSCRIPTION_ID: ${{secrets.TF_SUBSCRIPTION_ID}}
       ARM_TENANT_ID: ${{secrets.TF_TENANT_ID}}
 
@@ -90,4 +90,4 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -input=false -var AZURE_CLIENT_SECRET=${{secrets.TF_CLIENT_SECRET}}
+      run: terraform plan -input=false
