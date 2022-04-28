@@ -2,14 +2,18 @@
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
   features {}
-  #subscription_id = var.azure_subscription_id
+  subscription_id = ${{secrets.TF_SUBSCRIPTION_ID}}
+  client_id       = ${{secrets.TF_CLIENT_ID}}
+  client_secret   = ${{secrets.TF_CLIENT_SECRET}}
+  tenant_id       = ${{secrets.TF_TENANT_ID}}
 }
-data "azurerm_subscription" "current" {}
 
-resource "azurerm_resource_group" "azure_rg" {
-  name     = "DevLight-Resource-Group"
-  location = var.azure_region
-}
+# data "azurerm_subscription" "current" {}
+
+# resource "azurerm_resource_group" "azure_rg" {
+#   name     = "DevLight-Resource-Group"
+#   location = var.azure_region
+# }
 
 # resource "azurerm_monitor_action_group" "azure_mag" {
 #   name                = "Monitor-Action-Group"
