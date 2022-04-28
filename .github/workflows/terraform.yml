@@ -47,10 +47,7 @@ name: 'Terraform'
 on:
   push:
     branches:
-    - master
-  pull_request:
-    branches:
-    - master
+    - dev
 
 permissions:
   contents: read
@@ -63,7 +60,7 @@ jobs:
     
     env:
       ARM_CLIENT_ID: ${{secrets.TF_CLIENT_ID}}
-      ARM_CLIENT_SECRET: ${{secrets.TF_CLIENT_SECRET}}
+      AZURE_CLIENT_SECRET: ${{secrets.TF_CLIENT_SECRET}}
       ARM_SUBSCRIPTION_ID: ${{secrets.TF_SUBSCRIPTION_ID}}
       ARM_TENANT_ID: ${{secrets.TF_TENANT_ID}}
 
@@ -93,4 +90,4 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -input=false
+      run: terraform plan -input=false -var AZURE_CLIENT_SECRET=${{secrets.TF_CLIENT_SECRET}}
