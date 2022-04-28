@@ -93,4 +93,4 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -input=false
+      run: terraform plan -input=false -var AZURE_CLIENT_SECRET=${{secrets.TF_CLIENT_SECRET}}
