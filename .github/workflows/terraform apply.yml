@@ -42,12 +42,12 @@
 #       with:
 #         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-name: 'Terraform'
+name: 'Terraform Apply'
 
 on:
-  pull_request:
+  push:
     branches:
-    - dev
+    - master
 
 permissions:
   contents: read
@@ -59,10 +59,10 @@ jobs:
     environment: production
     
     env:
-      ARM_CLIENT_ID: ${{secrets.TF_CLIENT_ID}}
-      AZURE_CLIENT_SECRET: ${{secrets.TF_CLIENT_SECRET}}
-      ARM_SUBSCRIPTION_ID: ${{secrets.TF_SUBSCRIPTION_ID}}
-      ARM_TENANT_ID: ${{secrets.TF_TENANT_ID}}
+      TF_CLIENT_ID: ${{secrets.TF_CLIENT_ID}}
+      TF_CLIENT_SECRET: ${{secrets.TF_CLIENT_SECRET}}
+      TF_SUBSCRIPTION_ID: ${{secrets.TF_SUBSCRIPTION_ID}}
+      TF_TENANT_ID: ${{secrets.TF_TENANT_ID}}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -80,14 +80,4 @@ jobs:
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init
-      run: terraform init
 
-    # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      run: terraform fmt -check -list=true
-
-    # Generates an execution plan for Terraform
-    - name: Terraform Plan
-      run: terraform plan -input=false -var AZURE_CLIENT_SECRET=${{secrets.TF_CLIENT_SECRET}}
