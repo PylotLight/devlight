@@ -53,8 +53,8 @@ permissions:
   contents: read
 
 jobs:
-  terraform:
-    name: 'Terraform'
+  terraform-apply:
+    name: 'Terraform Apply'
     runs-on: ubuntu-latest
     environment: production
     
@@ -85,4 +85,3 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
-

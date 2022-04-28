@@ -47,22 +47,16 @@ name: 'Terraform Plan'
 on:
   pull_request:
     branches:
-    - dev
+    - master
 
 permissions:
   contents: read
 
 jobs:
-  terraform:
-    name: 'Terraform'
+  terraform-plan:
+    name: 'Terraform Plan'
     runs-on: ubuntu-latest
     environment: production
-    
-    env:
-      ARM_CLIENT_ID: ${{secrets.TF_CLIENT_ID}}
-      ARM_CLIENT_SECRET: ${{secrets.TF_CLIENT_SECRET}}
-      ARM_SUBSCRIPTION_ID: ${{secrets.TF_SUBSCRIPTION_ID}}
-      ARM_TENANT_ID: ${{secrets.TF_TENANT_ID}}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -90,4 +84,9 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -input=false
+      run: terraform plan -input=false -var 'ARM_CLIENT_ID=${{secrets.TF_CLIENT_ID}}' -var 'ARM_CLIENT_SECRET=${{secrets.TF_CLIENT_SECRET}}' -var 'ARM_SUBSCRIPTION_ID=${{secrets.TF_SUBSCRIPTION_ID}}' -var 'ARM_TENANT_ID=${{secrets.TF_TENANT_ID}}'
+      env:
+        ARM_CLIENT_ID: ${{secrets.TF_CLIENT_ID}}
+        ARM_CLIENT_SECRET: ${{secrets.TF_CLIENT_SECRET}}
+        ARM_SUBSCRIPTION_ID: ${{secrets.TF_SUBSCRIPTION_ID}}
+        ARM_TENANT_ID: ${{secrets.TF_TENANT_ID}}
