@@ -84,9 +84,15 @@ jobs:
         echo "TF_VAR_ARM_CLIENT_SECRET=${{ secrets.TF_CLIENT_SECRET }}" >> $GITHUB_ENV
         echo "TF_VAR_ARM_SUBSCRIPTION_ID=${{ secrets.TF_SUBSCRIPTION_ID }}" >> $GITHUB_ENV
         echo "TF_VAR_ARM_TENANT_ID=${{ secrets.TF_TENANT_ID }}" >> $GITHUB_ENV
+
+    - name: Export AWS Login Credentials
+      run: |
+        echo "TF_VAR_AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
+        echo "TF_VAR_AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
+        
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
-      run: terraform fmt -check -list=true
+      run: terraform fmt -check -list=true -diff
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
