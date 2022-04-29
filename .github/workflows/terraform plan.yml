@@ -89,6 +89,14 @@ jobs:
       run: |
         echo "TF_VAR_AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
         echo "TF_VAR_AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
+
+    - name: Export OCI Login Credentials
+      run: |
+        echo "TF_VAR_OCI_tenancy_ocid=${{ secrets.OCI_tenancy_ocid }}" >> $GITHUB_ENV
+        echo "TF_VAR_OCI_user_ocid=${{ secrets.OCI_user_ocid }}" >> $GITHUB_ENV
+        echo "TF_VAR_OCI_rsa_private_key=${{ secrets.ORACLE_PRIVATE_KEY }}" >> $GITHUB_ENV
+        echo "TF_VAR_OCI_fingerprint=${{ secrets.OCI_fingerprint }}" >> $GITHUB_ENV
+        
         
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
