@@ -94,7 +94,7 @@ jobs:
       run: |
         echo "TF_VAR_OCI_tenancy_ocid=${{ secrets.OCI_tenancy_ocid }}" >> $GITHUB_ENV
         echo "TF_VAR_OCI_user_ocid=${{ secrets.OCI_user_ocid }}" >> $GITHUB_ENV
-        echo "TF_VAR_OCI_rsa_private_key=${{ secrets.ORACLE_PRIVATE_KEY }}" >> $GITHUB_ENV
+        echo "TF_VAR_OCI_rsa_private_key=${{ secrets.OCI_PRIVATE_KEY_B64 }}" >> $GITHUB_ENV
         echo "TF_VAR_OCI_fingerprint=${{ secrets.OCI_fingerprint }}" >> $GITHUB_ENV
         
         
