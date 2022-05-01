@@ -56,6 +56,11 @@ variable "OCI_user_ocid" {
   type        = string
   sensitive   = true
 }
+variable "TF_VAR_OCI_private_key_path" {
+  description = "private_key_path"
+  type        = string
+  sensitive   = true
+}
 variable "OCI_rsa_private_key" {
   description = "rsa_private_key"
   type        = string
