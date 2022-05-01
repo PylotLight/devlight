@@ -1,7 +1,7 @@
 #AWS
 variable "aws_region" {
   description = "AWS Region"
-  default     = "ap-southeast-2"
+  default     = "ap_southeast_2"
 }
 
 variable "AWS_ACCESS_KEY_ID" {
@@ -43,4 +43,31 @@ variable "ARM_TENANT_ID" {
   description = "AZURE TENANT ID"
   type        = string
   sensitive   = true
+}
+
+#Oracle
+variable "OCI_tenancy_ocid" {
+  description = "tenancy_ocid"
+  type        = string
+  sensitive   = true
+}
+variable "OCI_user_ocid" {
+  description = "user_ocid"
+  type        = string
+  sensitive   = true
+}
+variable "OCI_rsa_private_key" {
+  description = "rsa_private_key"
+  type        = string
+  sensitive   = true
+}
+variable "OCI_fingerprint" {
+  description = "fingerprint"
+  type        = string
+  sensitive   = true
+}
+variable "OCI_region_identifier" {
+  description = "region_identifier"
+  type        = string
+  default     = "ap-melbourne-1"
 }
