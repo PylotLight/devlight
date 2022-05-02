@@ -56,7 +56,7 @@ variable "OCI_user_ocid" {
   type        = string
   sensitive   = true
 }
-variable "OCI_rsa_private_key" {
+variable "private_key" {
   description = "rsa_private_key"
   type        = string
   sensitive   = true
