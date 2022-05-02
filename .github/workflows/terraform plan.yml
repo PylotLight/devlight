@@ -48,9 +48,6 @@ on:
   pull_request:
     branches:
     - master
-  push:
-    branches-ignore:
-    - master
 
 permissions:
   contents: read
