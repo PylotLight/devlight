@@ -88,6 +88,20 @@ jobs:
       run: |
         echo "TF_VAR_AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
         echo "TF_VAR_AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
+     
+    - name: Export OCI Login Credentials
+      run: |
+        echo "TF_VAR_OCI_tenancy_ocid=${{ secrets.OCI_tenancy_ocid }}" >> $GITHUB_ENV
+        echo "TF_VAR_OCI_user_ocid=${{ secrets.OCI_user_ocid }}" >> $GITHUB_ENV
+        echo "TF_VAR_OCI_fingerprint=${{ secrets.OCI_fingerprint }}" >> $GITHUB_ENV
+        TF_VAR_OCI_rsa_private_key=$(cat << EOF
+        ${{ secrets.ORACLE_PRIVATE_KEY }}
+        EOF
+        )
+        echo "TF_VAR_OCI_rsa_private_key<<EOF" >> $GITHUB_ENV
+        echo "$TF_VAR_OCI_rsa_private_key" >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+     
       # On push to master, build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
