@@ -13,7 +13,7 @@ data "azurerm_subscription" "current" {}
 resource "azurerm_resource_group" "azure_rg" {
   name     = "DevLight-Resource-Group"
   location = var.azure_region
-  tags = {}
+  tags     = {}
 }
 
 resource "azurerm_monitor_action_group" "azure_mag" {
