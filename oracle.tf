@@ -16,14 +16,14 @@ resource "oci_core_vcn" "internal" {
   display_name   = "Internal VCN"
 }
 
-resource "oci_core_subnet" "dev" {
-  vcn_id                     = oci_core_vcn.internal.id
-  cidr_block                 = "172.16.0.0/24"
-  compartment_id             = var.OCI_tenancy_ocid
-  display_name               = "Core Subnet"
-  prohibit_public_ip_on_vnic = true
-  dns_label                  = "Core"
-}
+# resource "oci_core_subnet" "dev" {
+#   vcn_id                     = oci_core_vcn.internal.id
+#   cidr_block                 = "172.16.0.0/24"
+#   compartment_id             = var.OCI_tenancy_ocid
+#   display_name               = "Core Subnet"
+#   prohibit_public_ip_on_vnic = true
+#   dns_label                  = "Core"
+# }
 
 # # Get a list of Availability Domains
 # data "oci_identity_availability_domains" "ads" {
