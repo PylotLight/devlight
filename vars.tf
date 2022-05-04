@@ -61,6 +61,11 @@ variable "OCI_rsa_private_key" {
   type        = string
   sensitive   = true
 }
+variable "OCI_rsa_private_key_password" {
+  description = "rsa_private_key_password"
+  type        = string
+  sensitive   = true
+}
 variable "OCI_fingerprint" {
   description = "fingerprint"
   type        = string

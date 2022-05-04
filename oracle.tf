@@ -16,21 +16,31 @@ resource "oci_core_vcn" "internal" {
   display_name   = "Internal VCN"
 }
 
-# resource "oci_core_subnet" "dev" {
-#   vcn_id                     = oci_core_vcn.internal.id
-#   cidr_block                 = "172.16.0.0/24"
-#   compartment_id             = var.OCI_tenancy_ocid
-#   display_name               = "Core Subnet"
-#   prohibit_public_ip_on_vnic = true
-#   dns_label                  = "Core"
-# }
+resource "oci_core_subnet" "core" {
+  vcn_id                     = oci_core_vcn.internal.id
+  cidr_block                 = "172.16.0.0/24"
+  compartment_id             = var.OCI_tenancy_ocid
+  display_name               = "Core Subnet"
+  prohibit_public_ip_on_vnic = true
+  dns_label                  = "Core"
+}
 
-# # Get a list of Availability Domains
-# data "oci_identity_availability_domains" "ads" {
-#   compartment_id = var.tenancy_ocid
-# }
+resource "oci_core_subnet" "pub" {
+  vcn_id                     = oci_core_vcn.internal.id
+  cidr_block                 = "172.16.10.0/24"
+  compartment_id             = var.OCI_tenancy_ocid
+  display_name               = "Public Subnet"
+  prohibit_public_ip_on_vnic = false
+  dns_label                  = "Public"
+}
 
-# # Output the result
-# output "show-ads" {
-#   value = data.oci_identity_availability_domains.ads.availability_domains
-# }
+
+# Get a list of Availability Domains
+data "oci_identity_availability_domains" "ads" {
+  compartment_id = var.OCI_tenancy_ocid
+}
+
+# Output the result
+output "show-ads" {
+  value = data.oci_identity_availability_domains.ads.availability_domains
+}
