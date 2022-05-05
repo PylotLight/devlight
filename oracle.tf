@@ -4,8 +4,8 @@ provider "oci" {
   tenancy_ocid         = var.OCI_tenancy_ocid
   user_ocid            = var.OCI_user_ocid
   private_key          = var.OCI_rsa_private_key
-  private_key_password = var.OCI_rsa_private_key_password
-  private_key_path     = ""
+  #private_key_password = var.OCI_rsa_private_key_password
+  #private_key_path     = ""
   fingerprint          = var.OCI_fingerprint
   region               = var.OCI_region_identifier
 }

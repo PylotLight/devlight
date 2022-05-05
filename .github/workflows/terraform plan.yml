@@ -97,7 +97,7 @@ jobs:
         echo "TF_VAR_OCI_fingerprint=${{ secrets.OCI_fingerprint }}" >> $GITHUB_ENV
         echo "TF_VAR_OCI_rsa_private_key_password=${{ secrets.OCI_rsa_private_key_password }}" >> $GITHUB_ENV
         TF_VAR_OCI_rsa_private_key=$(cat << EOF
-        ${{ secrets.OCI_PRIVATE_KEY_B64 }}
+        ${{ secrets.OCI_PRIVATE_KEY }}
         EOF
         )
         echo "TF_VAR_OCI_rsa_private_key<<EOF" >> $GITHUB_ENV
