@@ -35,13 +35,39 @@ resource "oci_core_subnet" "pub" {
   dns_label                  = "Public"
 }
 
-
 # Get a list of Availability Domains
 data "oci_identity_availability_domains" "ads" {
   compartment_id = var.OCI_tenancy_ocid
 }
 
 # Output the result
-output "show-ads" {
-  value = data.oci_identity_availability_domains.ads.availability_domains
+# output "show-ads" {
+#   value = data.oci_identity_availability_domains.ads.availability_domains
+# }
+
+resource "oci_core_instance" "ubuntu_instance" {
+    # Required
+    availability_domain = data.oci_identity_availability_domains.ads.availability_domains[0].name
+    compartment_id = var.OCI_tenancy_ocid
+    shape = "VM.Standard.E2.1.Micro"
+    source_details {
+        source_id = "ocid1.image.oc1.ap-melbourne-1.aaaaaaaagn3ggfedzmgogki5fqkno7qm4zy64cnbeudxwmjxjlnyavn5jxva"
+        source_type = "image"
+    }
+
+    # Optional
+    display_name = "main-vm"
+    create_vnic_details {
+        assign_public_ip = true
+        subnet_id = oci_core_subnet.pub.id
+    }
+    # metadata = {
+    #     ssh_authorized_keys = file("<ssh-public-key-path>")
+    # } 
+    preserve_boot_volume = false
 }
+
+output "public-ip-for-compute-instance" {
+  value = oci_core_instance.ubuntu_instance.public_ip
+}
+
