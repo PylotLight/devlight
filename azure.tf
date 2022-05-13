@@ -132,7 +132,7 @@ resource "azurerm_linux_virtual_machine" "az_linuxvm" {
     version   = "latest"
   }
 
-  computer_name                   = "debian_vm"
+  computer_name                   = "debianvm"
   admin_username                  = "azadmin"
   disable_password_authentication = true
 
