@@ -26,7 +26,7 @@ resource "azurerm_monitor_action_group" "azure_mag" {
 # Create virtual network
 resource "azurerm_virtual_network" "az_vnet" {
   name                = "azvnet"
-  address_space       = ["172.16.0.0/24"]
+  address_space       = ["172.16.0.0/16"]
   location            = var.azure_region
   resource_group_name = azurerm_resource_group.azure_rg.name
 }
