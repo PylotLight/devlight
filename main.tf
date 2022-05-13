@@ -9,10 +9,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 3.0"
     }
-    oci = {
-      source  = "oracle/oci"
-      version = "~> 4.73.0"
-    }
+    # oci = {
+    #   source  = "oracle/oci"
+    #   version = "> 4.73.0"
+    # }
   }
   cloud {
     organization = "DevLight"
