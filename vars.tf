@@ -22,28 +22,40 @@ variable "azure_region" {
   default     = "australiasoutheast"
 }
 
-variable "ARM_CLIENT_ID" {
-  description = "AZURE CLIENT ID"
-  type        = string
-  sensitive   = true
-}
+# variable "ARM_CLIENT_ID" {
+#   description = "AZURE CLIENT ID"
+#   type        = string
+#   sensitive   = true
+# }
 
-variable "ARM_CLIENT_SECRET" {
-  description = "AZURE CLIENT SECRET"
-  type        = string
-  sensitive   = true
-}
+# variable "ARM_CLIENT_SECRET" {
+#   description = "AZURE CLIENT SECRET"
+#   type        = string
+#   sensitive   = true
+# }
 
-variable "ARM_SUBSCRIPTION_ID" {
-  description = "AZURE SUBSCRIPTION ID"
-  type        = string
-  sensitive   = true
-}
-variable "ARM_TENANT_ID" {
-  description = "AZURE TENANT ID"
-  type        = string
-  sensitive   = true
-}
+# variable "ARM_client_certificate_path" {
+#   description = "ARM_client_certificate_path"
+#   type        = string
+#   sensitive   = true
+# }
+
+# variable "ARM_client_certificate_password" {
+#   description = "ARM_client_certificate_password"
+#   type        = string
+#   sensitive   = true
+# }
+
+# variable "ARM_SUBSCRIPTION_ID" {
+#   description = "AZURE SUBSCRIPTION ID"
+#   type        = string
+#   sensitive   = true
+# }
+# variable "ARM_TENANT_ID" {
+#   description = "AZURE TENANT ID"
+#   type        = string
+#   sensitive   = true
+# }
 
 #Oracle
 variable "OCI_tenancy_ocid" {
