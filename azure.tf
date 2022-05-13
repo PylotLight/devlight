@@ -31,21 +31,21 @@ resource "azurerm_virtual_network" "az_vnet" {
   resource_group_name = azurerm_resource_group.azure_rg.name
 }
 
-# # Create subnet
-# resource "azurerm_subnet" "az_subnet" {
-#   name                 = "azsubnet"
-#   resource_group_name  = azurerm_resource_group.azure_rg.name
-#   virtual_network_name = azurerm_virtual_network.az_vnet.name
-#   address_prefixes     = ["172.16.1.0/24"]
-# }
+# Create subnet
+resource "azurerm_subnet" "az_subnet" {
+  name                 = "azsubnet"
+  resource_group_name  = azurerm_resource_group.azure_rg.name
+  virtual_network_name = azurerm_virtual_network.az_vnet.name
+  address_prefixes     = ["172.16.1.0/24"]
+}
 
-# # Create public IPs
-# resource "azurerm_public_ip" "az_pubip" {
-#   name                = "azpublicIP"
-#   location            = azurerm_resource_group.azure_rg.location
-#   resource_group_name = azurerm_resource_group.azure_rg.name
-#   allocation_method   = "Dynamic"
-# }
+# Create public IPs
+resource "azurerm_public_ip" "az_pubip" {
+  name                = "azpublicIP"
+  location            = azurerm_resource_group.azure_rg.location
+  resource_group_name = azurerm_resource_group.azure_rg.name
+  allocation_method   = "Dynamic"
+}
 
 # # Create Network Security Group and rule
 # resource "azurerm_network_security_group" "az_secgp" {

@@ -1,8 +1,8 @@
-# #Azure outputs
-# output "resource_group_name" {
-#   value     = azurerm_resource_group.azure_rg.name
-#   sensitive = true
-# }
+#Azure outputs
+output "resource_group_name" {
+  value     = azurerm_resource_group.azure_rg.name
+  sensitive = true
+}
 
 # output "public_ip_address" {
 #   value     = azurerm_linux_virtual_machine.az_linuxvm.public_ip_address
