@@ -17,7 +17,7 @@ resource "azurerm_resource_group" "azure_rg" {
 }
 
 resource "azurerm_monitor_action_group" "azure_mag" {
-  name                = "Monitor Action Group"
+  name                = "Monitor_Action_Group"
   resource_group_name = azurerm_resource_group.azure_rg.name
   short_name          = "MAG"
   tags                = {}
@@ -25,7 +25,7 @@ resource "azurerm_monitor_action_group" "azure_mag" {
 
 # Create virtual network
 resource "azurerm_virtual_network" "vnet" {
-  name                = "az vnet"
+  name                = "az_vnet"
   address_space       = ["172.16.0.0/24"]
   location            = var.azure_region
   resource_group_name = azurerm_resource_group.azure_rg.name
@@ -33,7 +33,7 @@ resource "azurerm_virtual_network" "vnet" {
 
 # Create subnet
 resource "azurerm_subnet" "az_subnet" {
-  name                 = "az subnet"
+  name                 = "az_subnet"
   resource_group_name  = azurerm_resource_group.azure_rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["172.16.1.0/24"]
@@ -41,7 +41,7 @@ resource "azurerm_subnet" "az_subnet" {
 
 # Create public IPs
 resource "azurerm_public_ip" "az_pubip" {
-  name                = "az public IP"
+  name                = "az_publicIP"
   location            = azurerm_resource_group.azure_rg.location
   resource_group_name = azurerm_resource_group.azure_rg.name
   allocation_method   = "Dynamic"
@@ -49,7 +49,7 @@ resource "azurerm_public_ip" "az_pubip" {
 
 # Create Network Security Group and rule
 resource "azurerm_network_security_group" "az_secgp" {
-  name                = "azure NetworkSecurityGroup"
+  name                = "azure_NetworkSecurityGroup"
   location            = azurerm_resource_group.azure_rg.location
   resource_group_name = azurerm_resource_group.azure_rg.name
 
@@ -68,12 +68,12 @@ resource "azurerm_network_security_group" "az_secgp" {
 
 # Create network interface
 resource "azurerm_network_interface" "az_nic" {
-  name                = "azure NIC"
+  name                = "azure_NIC"
   location            = azurerm_resource_group.azure_rg.location
   resource_group_name = azurerm_resource_group.azure_rg.name
 
   ip_configuration {
-    name                          = "azure NicConfiguration"
+    name                          = "azure_NicConfiguration"
     subnet_id                     = azurerm_subnet.az_subnet.id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.az_pubip.id
