@@ -17,7 +17,7 @@ resource "azurerm_resource_group" "azure_rg" {
 }
 
 resource "azurerm_monitor_action_group" "azure_mag" {
-  name                = "Monitor-Action-Group"
+  name                = "Monitor Action Group"
   resource_group_name = azurerm_resource_group.azure_rg.name
   short_name          = "MAG"
   tags                = {}
