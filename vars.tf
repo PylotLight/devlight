@@ -8,12 +8,14 @@ variable "AWS_ACCESS_KEY_ID" {
   description = "AWS ACCESS KEY ID"
   type        = string
   sensitive   = true
+  default     = ""
 }
 
 variable "AWS_SECRET_ACCESS_KEY" {
   description = "AWS SECRET ACCESS KEY"
   type        = string
   sensitive   = true
+  default     = ""
 }
 
 #Azure
@@ -26,12 +28,14 @@ variable "ARM_CLIENT_ID" {
   description = "AZURE CLIENT ID"
   type        = string
   sensitive   = true
+  default     = ""
 }
 
 variable "ARM_CLIENT_SECRET" {
   description = "AZURE CLIENT SECRET"
   type        = string
   sensitive   = true
+  default     = ""
 }
 
 # variable "ARM_client_certificate_path" {
@@ -50,11 +54,13 @@ variable "ARM_SUBSCRIPTION_ID" {
   description = "AZURE SUBSCRIPTION ID"
   type        = string
   sensitive   = true
+  default     = ""
 }
 variable "ARM_TENANT_ID" {
   description = "AZURE TENANT ID"
   type        = string
   sensitive   = true
+  default     = ""
 }
 
 #Oracle
@@ -62,26 +68,31 @@ variable "OCI_tenancy_ocid" {
   description = "tenancy_ocid"
   type        = string
   sensitive   = true
+  default     = ""
 }
 variable "OCI_user_ocid" {
   description = "user_ocid"
   type        = string
   sensitive   = true
+  default     = ""
 }
 variable "OCI_rsa_private_key" {
   description = "rsa_private_key"
   type        = string
   sensitive   = true
+  default     = ""
 }
 variable "OCI_rsa_private_key_password" {
   description = "rsa_private_key_password"
   type        = string
   sensitive   = true
+  default     = ""
 }
 variable "OCI_fingerprint" {
   description = "fingerprint"
   type        = string
   sensitive   = true
+  default     = ""
 }
 variable "OCI_region_identifier" {
   description = "region_identifier"
