@@ -63,6 +63,11 @@ variable "ARM_TENANT_ID" {
   default     = ""
 }
 
+variable "resource_group_name_prefix" {
+  default     = "azure_rg"
+  description = "Prefix of the resource group name that's combined with a random ID so name is unique in your Azure subscription."
+}
+
 # #Oracle
 # variable "OCI_tenancy_ocid" {
 #   description = "tenancy_ocid"
