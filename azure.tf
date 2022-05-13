@@ -24,8 +24,8 @@ resource "azurerm_monitor_action_group" "azure_mag" {
 }
 
 # Create virtual network
-resource "azurerm_virtual_network" "vnet" {
-  name                = "az_vnet"
+resource "azurerm_virtual_network" "az_vnet" {
+  name                = "azvnet"
   address_space       = ["172.16.0.0/24"]
   location            = var.azure_region
   resource_group_name = azurerm_resource_group.azure_rg.name
@@ -33,15 +33,15 @@ resource "azurerm_virtual_network" "vnet" {
 
 # Create subnet
 resource "azurerm_subnet" "az_subnet" {
-  name                 = "az_subnet"
+  name                 = "azsubnet"
   resource_group_name  = azurerm_resource_group.azure_rg.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
+  virtual_network_name = azurerm_virtual_network.az_vnet.name
   address_prefixes     = ["172.16.1.0/24"]
 }
 
 # Create public IPs
 resource "azurerm_public_ip" "az_pubip" {
-  name                = "az_publicIP"
+  name                = "azpublicIP"
   location            = azurerm_resource_group.azure_rg.location
   resource_group_name = azurerm_resource_group.azure_rg.name
   allocation_method   = "Dynamic"
@@ -81,7 +81,7 @@ resource "azurerm_network_interface" "az_nic" {
 }
 
 # Connect the security group to the network interface
-resource "azurerm_network_interface_security_group_association" "example" {
+resource "azurerm_network_interface_security_group_association" "az_nisga" {
   network_interface_id      = azurerm_network_interface.az_nic.id
   network_security_group_id = azurerm_network_security_group.az_secgp.id
 }
@@ -113,7 +113,7 @@ resource "tls_private_key" "az_ssh_key" {
 
 # Create virtual machine
 resource "azurerm_linux_virtual_machine" "az_linuxvm" {
-  name                  = "linux_vm"
+  name                  = "linuxvm"
   location              = azurerm_resource_group.azure_rg.location
   resource_group_name   = azurerm_resource_group.azure_rg.name
   network_interface_ids = [azurerm_network_interface.az_nic.id]
