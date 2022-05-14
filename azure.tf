@@ -113,7 +113,7 @@ resource "tls_private_key" "az_ssh_key" {
 
 # Create virtual machine
 resource "azurerm_linux_virtual_machine" "az_linuxvm" {
-  name                  = "linuxvm"
+  name                  = "azlinuxvm"
   location              = azurerm_resource_group.azure_rg.location
   resource_group_name   = azurerm_resource_group.azure_rg.name
   network_interface_ids = [azurerm_network_interface.az_nic.id]
@@ -133,11 +133,11 @@ resource "azurerm_linux_virtual_machine" "az_linuxvm" {
   }
 
   computer_name                   = "debianvm"
-  admin_username                  = "azadmin"
+  admin_username                  = "azureuser"
   disable_password_authentication = true
 
   admin_ssh_key {
-    username   = "azuser"
+    username   = "azureuser"
     public_key = tls_private_key.az_ssh_key.public_key_openssh
   }
 
