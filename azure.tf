@@ -33,10 +33,10 @@ resource "azurerm_virtual_network" "az_vnet" {
 
 # Create subnet
 resource "azurerm_subnet" "az_subnet" {
-  name                        = "azsubnet"
-  resource_group_name         = azurerm_resource_group.azure_rg.name
-  virtual_network_name        = azurerm_virtual_network.az_vnet.name
-  address_prefixes            = ["172.16.1.0/24"]
+  name                 = "azsubnet"
+  resource_group_name  = azurerm_resource_group.azure_rg.name
+  virtual_network_name = azurerm_virtual_network.az_vnet.name
+  address_prefixes     = ["172.16.1.0/24"]
 }
 
 # Create public IPs
