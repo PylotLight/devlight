@@ -118,16 +118,15 @@ resource "azurerm_linux_virtual_machine" "az_linuxvm" {
   resource_group_name   = azurerm_resource_group.azure_rg.name
   network_interface_ids = [azurerm_network_interface.az_nic.id]
   size                  = "Standard_B1s"
-
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Premium_LRS"
   }
   source_image_reference {
-    publisher = "tidalmediainc"
-    offer     = "debian-11-minimal"
-    sku       = "debian-11-minimal"
-    version   = "1.0.0"
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "18.04-LTS"
+    version   = "latest"
   }
   computer_name                   = "debianvm"
   admin_username                  = "azureuser"
