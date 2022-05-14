@@ -120,7 +120,6 @@ resource "azurerm_linux_virtual_machine" "az_linuxvm" {
   size                  = "Standard_B1s"
 
   os_disk {
-    name                 = "myOsDisk"
     caching              = "ReadWrite"
     storage_account_type = "Premium_LRS"
   }
