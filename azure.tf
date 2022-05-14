@@ -118,9 +118,7 @@ resource "azurerm_linux_virtual_machine" "az_linuxvm" {
   resource_group_name   = azurerm_resource_group.azure_rg.name
   network_interface_ids = [azurerm_network_interface.az_nic.id]
   size                  = "Standard_B1s"
-
   os_disk {
-    name                 = "myOsDisk"
     caching              = "ReadWrite"
     storage_account_type = "Premium_LRS"
   }
