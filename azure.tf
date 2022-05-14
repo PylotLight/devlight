@@ -111,34 +111,34 @@ resource "tls_private_key" "az_ssh_key" {
   rsa_bits  = 4096
 }
 
-# # Create virtual machine
-# resource "azurerm_linux_virtual_machine" "az_linuxvm" {
-#   name                  = "azdebianvm"
-#   location              = azurerm_resource_group.azure_rg.location
-#   resource_group_name   = azurerm_resource_group.azure_rg.name
-#   network_interface_ids = [azurerm_network_interface.az_nic.id]
-#   size                  = "Standard_B1s"
-#   os_disk {
-#     caching              = "ReadWrite"
-#     storage_account_type = "Premium_LRS"
-#   }
-#   source_image_reference {
-#     publisher = "Canonical"
-#     offer     = "UbuntuServer"
-#     sku       = "18.04-LTS"
-#     version   = "latest"
-#   }
-#   computer_name                   = "debianvm"
-#   admin_username                  = "azureuser"
-#   disable_password_authentication = true
-#   admin_ssh_key {
-#     username   = "azureuser"
-#     public_key = tls_private_key.az_ssh_key.public_key_openssh
-#   }
-#   boot_diagnostics {
-#     storage_account_uri = azurerm_storage_account.az_storageacc.primary_blob_endpoint
-#   }
-# }
+# Create virtual machine
+resource "azurerm_linux_virtual_machine" "az_linuxvm" {
+  name                  = "azdebianvm"
+  location              = azurerm_resource_group.azure_rg.location
+  resource_group_name   = azurerm_resource_group.azure_rg.name
+  network_interface_ids = [azurerm_network_interface.az_nic.id]
+  size                  = "Standard_B1s"
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Premium_LRS"
+  }
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "18.04-LTS"
+    version   = "latest"
+  }
+  computer_name                   = "debianvm"
+  admin_username                  = "azureuser"
+  disable_password_authentication = true
+  admin_ssh_key {
+    username   = "azureuser"
+    public_key = tls_private_key.az_ssh_key.public_key_openssh
+  }
+  boot_diagnostics {
+    storage_account_uri = azurerm_storage_account.az_storageacc.primary_blob_endpoint
+  }
+}
 
 # resource "azurerm_consumption_budget_subscription" "azure_bs" {
 #   name            = "Budget-Subscription"
