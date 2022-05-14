@@ -73,7 +73,7 @@ resource "azurerm_network_interface" "az_nic" {
   name                = "azure_nic"
   location            = azurerm_resource_group.azure_rg.location
   resource_group_name = azurerm_resource_group.azure_rg.name
-  tags                          = {}
+  tags                = {}
   ip_configuration {
     name                          = "azure_NicConfiguration"
     subnet_id                     = azurerm_subnet.az_subnet.id
