@@ -37,8 +37,6 @@ resource "azurerm_subnet" "az_subnet" {
   resource_group_name         = azurerm_resource_group.azure_rg.name
   virtual_network_name        = azurerm_virtual_network.az_vnet.name
   address_prefixes            = ["172.16.1.0/24"]
-  service_endpoint_policy_ids = []
-  service_endpoints           = []
 }
 
 # Create public IPs
