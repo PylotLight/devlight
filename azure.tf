@@ -124,23 +124,19 @@ resource "tls_private_key" "az_ssh_key" {
 #     caching              = "ReadWrite"
 #     storage_account_type = "Premium_LRS"
 #   }
-
 #   source_image_reference {
 #     publisher = "tidalmediainc"
 #     offer     = "debian-11-minimal"
 #     sku       = "debian-11-minimal"
 #     version   = "1.0.0"
 #   }
-
 #   computer_name                   = "debianvm"
 #   admin_username                  = "azureuser"
 #   disable_password_authentication = true
-
 #   admin_ssh_key {
 #     username   = "azureuser"
 #     public_key = tls_private_key.az_ssh_key.public_key_openssh
 #   }
-
 #   boot_diagnostics {
 #     storage_account_uri = azurerm_storage_account.az_storageacc.primary_blob_endpoint
 #   }
