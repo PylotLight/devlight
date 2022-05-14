@@ -11,7 +11,7 @@ provider "azurerm" {
 data "azurerm_subscription" "current" {}
 
 resource "azurerm_resource_group" "azure_rg" {
-  name     = "Core-Resource-Group"
+  name     = "DevLight-Resource-Group"
   location = var.azure_region
   tags     = {}
 }
