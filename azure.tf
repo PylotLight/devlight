@@ -33,10 +33,12 @@ resource "azurerm_virtual_network" "az_vnet" {
 
 # Create subnet
 resource "azurerm_subnet" "az_subnet" {
-  name                 = "azsubnet"
-  resource_group_name  = azurerm_resource_group.azure_rg.name
-  virtual_network_name = azurerm_virtual_network.az_vnet.name
-  address_prefixes     = ["172.16.1.0/24"]
+  name                        = "azsubnet"
+  resource_group_name         = azurerm_resource_group.azure_rg.name
+  virtual_network_name        = azurerm_virtual_network.az_vnet.name
+  address_prefixes            = ["172.16.1.0/24"]
+  service_endpoint_policy_ids = []
+  service_endpoints           = []
 }
 
 # Create public IPs
@@ -71,7 +73,7 @@ resource "azurerm_network_interface" "az_nic" {
   name                = "azure_nic"
   location            = azurerm_resource_group.azure_rg.location
   resource_group_name = azurerm_resource_group.azure_rg.name
-
+  tags                          = {}
   ip_configuration {
     name                          = "azure_NicConfiguration"
     subnet_id                     = azurerm_subnet.az_subnet.id
