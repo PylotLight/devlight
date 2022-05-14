@@ -11,7 +11,7 @@ provider "azurerm" {
 data "azurerm_subscription" "current" {}
 
 resource "azurerm_resource_group" "azure_rg" {
-  name     = "DevLight-Resource-Group"
+  name     = "Core-Resource-Group"
   location = var.azure_region
   tags     = {}
 }
@@ -113,7 +113,7 @@ resource "tls_private_key" "az_ssh_key" {
 
 # Create virtual machine
 resource "azurerm_linux_virtual_machine" "az_linuxvm" {
-  name                  = "azlinuxvm"
+  name                  = "azdebianvm"
   location              = azurerm_resource_group.azure_rg.location
   resource_group_name   = azurerm_resource_group.azure_rg.name
   network_interface_ids = [azurerm_network_interface.az_nic.id]
