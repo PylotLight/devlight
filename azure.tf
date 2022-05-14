@@ -129,7 +129,7 @@ resource "azurerm_linux_virtual_machine" "az_linuxvm" {
     publisher = "tidalmediainc"
     offer     = "debian-11-minimal"
     sku       = "debian-11-minimal"
-    version   = "latest"
+    version   = "1.0.0"
   }
 
   computer_name                   = "debianvm"
