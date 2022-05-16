@@ -7,12 +7,14 @@ provider "aws" {
 
 # Create a VPC
 resource "aws_vpc" "vpc" {
-  cidr_block = "172.16.0.0/16"
+  cidr_block           = "172.16.0.0/16"
+  enable_dns_hostnames = true
 }
 
 resource "aws_subnet" "subnet" {
-  vpc_id     = aws_vpc.vpc.id
-  cidr_block = "172.16.10.0/24"
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = "172.16.10.0/24"
+  availability_zone = var.aws_region
 }
 
 resource "aws_network_interface" "nic" {
