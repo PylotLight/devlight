@@ -7,15 +7,16 @@ provider "aws" {
 
 # Create a VPC
 resource "aws_vpc" "vpc" {
-  cidr_block           = "172.16.0.0/16"
+  cidr_block = "172.16.0.0/16"
+  # ipv6_cidr_block      = "2001:db8::/56"
   enable_dns_hostnames = true
 }
 
 resource "aws_subnet" "subnet" {
-  vpc_id                          = aws_vpc.vpc.id
-  cidr_block                      = "172.16.10.0/24"
-  ipv6_cidr_block                 = "2001:db8::/64"
-  assign_ipv6_address_on_creation = true
+  vpc_id     = aws_vpc.vpc.id
+  cidr_block = "172.16.10.0/24"
+  # ipv6_cidr_block                 = "2001:db8::/64"
+  # assign_ipv6_address_on_creation = true
 }
 
 resource "aws_network_interface" "nic" {
