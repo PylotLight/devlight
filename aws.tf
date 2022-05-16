@@ -8,6 +8,7 @@ provider "aws" {
 # Create a VPC
 resource "aws_vpc" "vpc" {
   cidr_block           = "172.16.0.0/16"
+  ipv6_cidr_block      = "2001:db8::/56"
   enable_dns_hostnames = true
 }
 
