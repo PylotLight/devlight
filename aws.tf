@@ -12,8 +12,8 @@ resource "aws_vpc" "vpc" {
 }
 
 resource "aws_subnet" "subnet" {
-  vpc_id            = aws_vpc.vpc.id
-  cidr_block        = "172.16.10.0/24"
+  vpc_id     = aws_vpc.vpc.id
+  cidr_block = "172.16.10.0/24"
 }
 
 resource "aws_network_interface" "nic" {
