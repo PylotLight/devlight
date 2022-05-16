@@ -1,7 +1,7 @@
 #AWS
 variable "aws_region" {
   description = "AWS Region"
-  default     = "ap_southeast_2"
+  default     = "ap-southeast-2"
 }
 
 variable "AWS_ACCESS_KEY_ID" {
