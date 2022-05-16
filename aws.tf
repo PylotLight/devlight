@@ -7,7 +7,8 @@ provider "aws" {
 
 # Create a VPC
 resource "aws_vpc" "vpc" {
-  cidr_block = "172.16.0.0/16"
+  cidr_block           = "172.16.0.0/16"
+  enable_dns_hostnames = true
 }
 
 resource "aws_subnet" "subnet" {
@@ -16,9 +17,30 @@ resource "aws_subnet" "subnet" {
 }
 
 resource "aws_network_interface" "nic" {
-  subnet_id = aws_subnet.subnet.id
-  # private_ips = ["172.16.10.100"]
+  subnet_id         = aws_subnet.subnet.id
+  ipv6_prefix_count = 1
 }
+
+resource "aws_security_group" "sg" {
+  name        = "AWS SG"
+  description = "Terraform created SG"
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+}
+
 # Create (and display) an SSH key
 resource "tls_private_key" "aws_ssh_key" {
   algorithm = "RSA"
@@ -31,12 +53,9 @@ resource "aws_key_pair" "ssh_key" {
 
 #create an instance
 resource "aws_instance" "instance" {
-  ami           = "ami-0c6120f461d6b39e9"
-  instance_type = "t2.micro"
-  network_interface {
-    network_interface_id = aws_network_interface.nic.id
-    device_index         = 0
-  }
+  ami                         = "ami-0c6120f461d6b39e9"
+  instance_type               = "t2.micro"
+  associate_public_ip_address = true
 }
 
 
