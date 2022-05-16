@@ -8,14 +8,10 @@ provider "aws" {
 # Create a VPC
 resource "aws_vpc" "vpc" {
   cidr_block = "172.16.0.0/16"
-
-
-resource "aws_subnet" "subnet" {
-  vpc_id     = aws_vpc.vpc.id
-  cidr_block = "172.16.10.0/24"
 }
 
-resource "aws_network_interface" "nic" {
+resource "aws_subnet" "subnet" {
+  vpc_id    = aws_vpc.vpc.id
   subnet_id = aws_subnet.subnet.id
   # private_ips = ["172.16.10.100"]
 }
