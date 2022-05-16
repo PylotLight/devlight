@@ -20,8 +20,7 @@ resource "aws_subnet" "subnet" {
 }
 
 resource "aws_network_interface" "nic" {
-  subnet_id         = aws_subnet.subnet.id
-  ipv6_prefix_count = 1
+  subnet_id = aws_subnet.subnet.id
 }
 
 resource "aws_security_group" "sg" {
@@ -36,11 +35,11 @@ resource "aws_security_group" "sg" {
   }
 
   egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+    # ipv6_cidr_blocks = ["::/0"]
   }
 }
 
