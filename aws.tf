@@ -21,7 +21,7 @@ resource "aws_subnet" "subnet" {
 }
 
 resource "aws_network_interface" "nic" {
-  subnet_id   = aws_subnet.subnet.id
+  subnet_id = aws_subnet.subnet.id
   # private_ips = ["172.16.10.100"]
 }
 # Create (and display) an SSH key
