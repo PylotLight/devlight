@@ -12,15 +12,15 @@ output "aws_private_key" {
   sensitive = true
 }
 
-output "aws_public_ip_address" {
-  value     = aws_instance.instance.public_ip
-  sensitive = true
-}
+# output "aws_public_ip_address" {
+#   value     = aws_instance.instance.public_ip
+#   sensitive = true
+# }
 
 output "aws_public_DNS" {
-  value     = aws_instance.instance.public_dns
-  sensitive = true
-}
+#   value     = aws_instance.instance.public_dns
+#   sensitive = true
+# }
 
 # output "public_ip_address" {
 #   value     = azurerm_linux_virtual_machine.az_linuxvm.public_ip_address
