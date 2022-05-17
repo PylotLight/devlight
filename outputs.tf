@@ -17,7 +17,7 @@ output "aws_private_key" {
 #   sensitive = true
 # }
 
-output "aws_public_DNS" {
+# output "aws_public_DNS" {
 #   value     = aws_instance.instance.public_dns
 #   sensitive = true
 # }
