@@ -5,43 +5,43 @@ provider "aws" {
   secret_key = var.AWS_SECRET_ACCESS_KEY
 }
 
-# Create a VPC
-resource "aws_vpc" "vpc" {
-  cidr_block = "172.16.0.0/16"
-  # ipv6_cidr_block      = "2001:db8::/56"
-  enable_dns_hostnames = true
-}
+# # Create a VPC
+# resource "aws_vpc" "vpc" {
+#   cidr_block = "172.16.0.0/16"
+#   # ipv6_cidr_block      = "2001:db8::/56"
+#   enable_dns_hostnames = true
+# }
 
-resource "aws_subnet" "subnet" {
-  vpc_id     = aws_vpc.vpc.id
-  cidr_block = "172.16.10.0/24"
-  # ipv6_cidr_block                 = "2001:db8::/64"
-  # assign_ipv6_address_on_creation = true
-}
+# resource "aws_subnet" "subnet" {
+#   vpc_id     = aws_vpc.vpc.id
+#   cidr_block = "172.16.10.0/24"
+#   # ipv6_cidr_block                 = "2001:db8::/64"
+#   # assign_ipv6_address_on_creation = true
+# }
 
-resource "aws_network_interface" "nic" {
-  subnet_id = aws_subnet.subnet.id
-}
+# resource "aws_network_interface" "nic" {
+#   subnet_id = aws_subnet.subnet.id
+# }
 
-resource "aws_security_group" "sg" {
-  name        = "AWS SG"
-  description = "Terraform created SG"
+# resource "aws_security_group" "sg" {
+#   name        = "AWS SG"
+#   description = "Terraform created SG"
 
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+#   ingress {
+#     from_port   = 22
+#     to_port     = 22
+#     protocol    = "tcp"
+#     cidr_blocks = ["0.0.0.0/0"]
+#   }
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-    # ipv6_cidr_blocks = ["::/0"]
-  }
-}
+#   egress {
+#     from_port   = 0
+#     to_port     = 0
+#     protocol    = "-1"
+#     cidr_blocks = ["0.0.0.0/0"]
+#     # ipv6_cidr_blocks = ["::/0"]
+#   }
+# }
 
 # Create (and display) an SSH key
 resource "tls_private_key" "aws_ssh_key" {
@@ -49,9 +49,9 @@ resource "tls_private_key" "aws_ssh_key" {
   rsa_bits  = 4096
 }
 
-resource "aws_key_pair" "ssh_key" {
-  public_key = tls_private_key.aws_ssh_key.public_key_openssh
-}
+# resource "aws_key_pair" "ssh_key" {
+#   public_key = tls_private_key.aws_ssh_key.public_key_openssh
+# }
 
 #create an instance
 # resource "aws_instance" "instance" {
