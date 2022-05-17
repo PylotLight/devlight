@@ -7,10 +7,10 @@ output "az_private_key" {
   value     = tls_private_key.az_ssh_key.private_key_pem
   sensitive = true
 }
-output "aws_private_key" {
-  value     = tls_private_key.aws_ssh_key.private_key_pem
-  sensitive = true
-}
+# output "aws_private_key" {
+#   value     = tls_private_key.aws_ssh_key.private_key_pem
+#   sensitive = true
+# }
 
 # output "aws_public_ip_address" {
 #   value     = aws_instance.instance.public_ip
