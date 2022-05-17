@@ -54,10 +54,10 @@ resource "aws_key_pair" "ssh_key" {
 }
 
 #create an instance
-resource "aws_instance" "instance" {
-  ami                         = "ami-0c6120f461d6b39e9"
-  instance_type               = "t2.micro"
-  associate_public_ip_address = true
-}
+# resource "aws_instance" "instance" {
+#   ami                         = "ami-0c6120f461d6b39e9"
+#   instance_type               = "t2.micro"
+#   associate_public_ip_address = true
+# }
 
 
