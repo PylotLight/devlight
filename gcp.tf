@@ -6,6 +6,6 @@ provider "google" {
   zone        = var.GCP_Zone
 }
 
-# resource "google_compute_network" "vpc_network" {
-#   name = "terraform-network"
-# }
+resource "google_compute_network" "vpc" {
+  name = "devlight-vpc"
+}

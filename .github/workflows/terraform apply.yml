@@ -93,6 +93,15 @@ jobs:
         echo "TF_VAR_AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
         echo "TF_VAR_AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
      
+    - name: Export GCP Login Credentials
+      run: |
+        TF_VAR_GOOGLE_CREDENTIALS=$(cat << EOF
+        ${{ secrets.GCP_CREDENTIALS }}
+        EOF
+        )
+        echo "TF_VAR_GOOGLE_CREDENTIALS<<EOF" >> $GITHUB_ENV
+        echo "$TF_VAR_GOOGLE_CREDENTIALS" >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
     # - name: Export OCI Login Credentials
     #   run: |
     #     echo "TF_VAR_OCI_tenancy_ocid=${{ secrets.OCI_tenancy_ocid }}" >> $GITHUB_ENV
