@@ -78,12 +78,12 @@ variable "GOOGLE_CREDENTIALS" {
 
 variable "GCP_Region" {
   description = "GCP Region"
-  default     = "australia-southeast2"
+  default     = "us-west1"
 }
 
 variable "GCP_Zone" {
   description = "GCP Zone"
-  default     = "australia-southeast2-a"
+  default     = "us-west1-c"
 }
 
 variable "GCP_Project" {
