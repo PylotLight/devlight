@@ -88,7 +88,7 @@ variable "GCP_Zone" {
 
 variable "GCP_Project" {
   description = "GCP Project"
-  default     = "devlight"
+  default     = "devlight-350705"
 }
 
 
