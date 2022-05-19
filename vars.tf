@@ -63,10 +63,36 @@ variable "ARM_TENANT_ID" {
   default     = ""
 }
 
-variable "resource_group_name_prefix" {
-  default     = "azure_rg"
-  description = "Prefix of the resource group name that's combined with a random ID so name is unique in your Azure subscription."
+# variable "resource_group_name_prefix" {
+#   default     = "azure_rg"
+#   description = "Prefix of the resource group name that's combined with a random ID so name is unique in your Azure subscription."
+# }
+
+#GCP
+variable "GOOGLE_CREDENTIALS" {
+  description = "GOOGLE CREDENTIALS"
+  type        = string
+  sensitive   = true
+  default     = ""
 }
+
+variable "GCP_Region" {
+  description = "GCP Region"
+  default     = "australia-southeast2"
+}
+
+variable "GCP_Zone" {
+  description = "GCP Zone"
+  default     = "australia-southeast2-a"
+}
+
+variable "GCP_Project" {
+  description = "GCP Project"
+  default     = "devlight"
+}
+
+
+
 
 # #Oracle
 # variable "OCI_tenancy_ocid" {
