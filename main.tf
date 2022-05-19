@@ -9,6 +9,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 3.0"
     }
+    google = {
+      source  = "hashicorp/google"
+      version = "4.21.0"
+    }
     # oci = {
     #   source  = "oracle/oci"
     #   version = "> 4.73.0"
