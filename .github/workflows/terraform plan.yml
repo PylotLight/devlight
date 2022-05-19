@@ -96,7 +96,13 @@ jobs:
 
     - name: Export GCP Login Credentials
       run: |
-        echo "TF_VAR_GOOGLE_CREDENTIALS=${{ secrets.GCP_CREDENTIALS }}" >> $GITHUB_ENV
+        TF_VAR_GOOGLE_CREDENTIALS=$(cat << EOF
+        ${{ secrets.GCP_CREDENTIALS }}
+        EOF
+        )
+        echo "TF_VAR_GOOGLE_CREDENTIALS<<EOF" >> $GITHUB_ENV
+        echo "$TF_VAR_GOOGLE_CREDENTIALS" >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
 
     # - name: Export OCI Login Credentials
     #   run: |
