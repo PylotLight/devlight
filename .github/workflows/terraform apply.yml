@@ -45,9 +45,11 @@
 name: 'Terraform Apply'
 
 on:
-  push:
-    branches:
-    - master
+  issue_comment:
+    types: [created]
+  # push:
+  #   branches:
+  #   - master
 
 permissions:
   contents: read
@@ -64,6 +66,15 @@ jobs:
         shell: bash
 
     steps:
+    - name: listen for PR Comments
+      uses: machine-learning-apps/actions-chatops@master
+      with:
+        # APP_PEM: ${{ secrets.APP_PEM }}
+        # APP_ID: ${{ secrets.APP_ID }}
+        TRIGGER_PHRASE: "/apply"
+        # INDICATOR_LABEL: "test-label"
+      env: # you must supply GITHUB_TOKEN
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v3
