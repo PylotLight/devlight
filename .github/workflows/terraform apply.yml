@@ -57,6 +57,7 @@ permissions:
 jobs:
   terraform-apply:
     name: 'Terraform Apply'
+    if: ${{ github.event.issue.pull_request && github.event.comment.body == '/apply' }}
     runs-on: ubuntu-latest
     environment: production
 
@@ -66,15 +67,6 @@ jobs:
         shell: bash
 
     steps:
-    - name: listen for PR Comments
-      uses: machine-learning-apps/actions-chatops@master
-      with:
-        # APP_PEM: ${{ secrets.APP_PEM }}
-        # APP_ID: ${{ secrets.APP_ID }}
-        TRIGGER_PHRASE: "/apply"
-        # INDICATOR_LABEL: "test-label"
-      env: # you must supply GITHUB_TOKEN
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v3
@@ -132,3 +124,6 @@ jobs:
     - name: Terraform Apply
       #if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
+
+    - name: Terraform Refesh
+      run : terraform refresh
