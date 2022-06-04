@@ -102,30 +102,30 @@ resource "tls_private_key" "az_ssh_key" {
 }
 
 # Create virtual machine
-# resource "azurerm_linux_virtual_machine" "az_linuxvm" {
-#   name                  = "azlinuxvm-${random_id.randomId.hex}"
-#   location              = azurerm_resource_group.azure_rg.location
-#   resource_group_name   = azurerm_resource_group.azure_rg.name
-#   network_interface_ids = [azurerm_network_interface.az_nic.id]
-#   size                  = "Standard_B1s"
-#   os_disk {
-#     caching              = "None"
-#     storage_account_type = "Standard_LRS"
-#   }
-#   source_image_reference {
-#     publisher = "Debian"
-#     offer     = "debian-11"
-#     sku       = "11"
-#     version   = "latest"
-#   }
-#   computer_name                   = "linuxvm"
-#   admin_username                  = "azureuser"
-#   disable_password_authentication = true
-#   admin_ssh_key {
-#     username   = "azureuser"
-#     public_key = tls_private_key.az_ssh_key.public_key_openssh
-#   }
-# }
+resource "azurerm_linux_virtual_machine" "az_linuxvm" {
+  name                  = "azlinuxvm-${random_id.randomId.hex}"
+  location              = azurerm_resource_group.azure_rg.location
+  resource_group_name   = azurerm_resource_group.azure_rg.name
+  network_interface_ids = [azurerm_network_interface.az_nic.id]
+  size                  = "Standard_B1s"
+  os_disk {
+    caching              = "None"
+    storage_account_type = "Standard_LRS"
+  }
+  source_image_reference {
+    publisher = "Debian"
+    offer     = "debian-11"
+    sku       = "11"
+    version   = "latest"
+  }
+  computer_name                   = "linuxvm"
+  admin_username                  = "azureuser"
+  disable_password_authentication = true
+  admin_ssh_key {
+    username   = "azureuser"
+    public_key = tls_private_key.az_ssh_key.public_key_openssh
+  }
+}
 
 # resource "azurerm_consumption_budget_subscription" "azure_bs" {
 #   name            = "Budget-Subscription"
