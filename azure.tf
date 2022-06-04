@@ -45,6 +45,7 @@ resource "azurerm_public_ip" "az_pubip" {
   location            = azurerm_resource_group.azure_rg.location
   resource_group_name = azurerm_resource_group.azure_rg.name
   allocation_method   = "Dynamic"
+  domain_name_label   = "vmnode"
 }
 
 # Create Network Security Group and rule

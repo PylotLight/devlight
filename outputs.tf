@@ -8,8 +8,13 @@ output "az_private_key" {
   sensitive = true
 }
 
-output "az_publicip" {
+output "az_public_ip" {
   value     = azurerm_linux_virtual_machine.az_linuxvm.public_ip_address
+  sensitive = true
+}
+
+output "az_public_dnsname" {
+  value     = azurerm_public_ip.az_pubip.fqdn
   sensitive = true
 }
 
